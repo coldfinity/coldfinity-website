@@ -13,10 +13,14 @@
   --bg-card:       #111111;
   --bg-card-hover: #181818;
 
-  --accent:        #00d4ff;
-  --accent-glow:   rgba(0, 212, 255, 0.22);
-  --accent-dim:    rgba(0, 212, 255, 0.07);
-  --accent-border: rgba(0, 212, 255, 0.2);
+  --accent:        #eb6f92;
+  --accent-glow:   rgba(235, 111, 146, 0.22);
+  --accent-dim:    rgba(235, 111, 146, 0.08);
+  --accent-border: rgba(235, 111, 146, 0.25);
+
+  --accent2:       #c4a7e7;
+  --accent2-dim:   rgba(196, 167, 231, 0.08);
+  --accent2-border:rgba(196, 167, 231, 0.25);
 
   --text:          #a0a0a0;
   --text-bright:   #f0f0f0;
@@ -483,11 +487,11 @@ button { cursor: none; font-family: inherit; }
 .tech-badge {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
+  color: var(--accent2);
+  border: 1px solid var(--accent2-border);
   border-radius: 2px;
   padding: 0.18rem 0.55rem;
-  background: var(--accent-dim);
+  background: var(--accent2-dim);
 }
 
 .project-card__links {
@@ -550,9 +554,9 @@ button { cursor: none; font-family: inherit; }
   cursor: default;
 }
 .skill-pill:hover {
-  border-color: var(--accent-border);
-  color: var(--accent);
-  background: var(--accent-dim);
+  border-color: var(--accent2-border);
+  color: var(--accent2);
+  background: var(--accent2-dim);
   transform: translateY(-1px);
 }
 

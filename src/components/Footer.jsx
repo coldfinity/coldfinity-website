@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="footer">
       <span>© {year} COLDFINITY — YUDI</span>
       <div className="footer__right">
-        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/coldfinity" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yudi-wu-34bb98192/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="mailto:wuyd0815@gmail.com">Email</a>
       </div>
     </footer>

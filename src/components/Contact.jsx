@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 
 const socials = [
-  { label: 'GitHub',   href: 'https://github.com/'   },
-  { label: 'LinkedIn', href: 'https://linkedin.com/'  },
+  { label: 'GitHub',   href: 'https://github.com/coldfinity'   },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yudi-wu-34bb98192/'  },
   { label: 'Email',    href: 'mailto:wuyd0815@gmail.com' },
 ]
 
