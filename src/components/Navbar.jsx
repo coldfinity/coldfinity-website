@@ -1,23 +1,19 @@
-import { useState, useEffect } from 'react'
+// Section indices: About=1, Projects=2, Skills=3, Contact=4
+const links = [
+  { label: 'About',    idx: 1 },
+  { label: 'Projects', idx: 2 },
+  { label: 'Skills',   idx: 3 },
+  { label: 'Contact',  idx: 4 },
+]
 
-const links = ['About', 'Projects', 'Skills', 'Contact']
-
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
+export default function Navbar({ goTo }) {
   return (
-    <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
-      <span className="navbar__logo">COLDFINITY</span>
+    <nav className="navbar navbar--scrolled">
+      <button className="navbar__logo" onClick={() => goTo?.(0)}>COLDFINITY</button>
       <ul className="navbar__links">
-        {links.map(link => (
-          <li key={link}>
-            <a href={`#${link.toLowerCase()}`}>{link}</a>
+        {links.map(({ label, idx }) => (
+          <li key={label}>
+            <button onClick={() => goTo?.(idx)}>{label}</button>
           </li>
         ))}
       </ul>

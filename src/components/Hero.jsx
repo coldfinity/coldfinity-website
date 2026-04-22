@@ -1,6 +1,6 @@
-export default function Hero() {
+export default function Hero({ goTo }) {
   return (
-    <section id="hero" className="hero">
+    <section className="hero">
       <div className="hero__grid" />
       <div className="hero__radial" />
 
@@ -18,14 +18,14 @@ export default function Hero() {
         </p>
 
         <div className="hero__cta">
-          <a href="#projects" className="btn btn--primary">View Work</a>
-          <a href="#contact" className="btn btn--outline">Contact Me</a>
+          <button className="btn btn--primary"  onClick={() => goTo?.(2)}>View Work</button>
+          <button className="btn btn--outline" onClick={() => goTo?.(4)}>Contact Me</button>
         </div>
       </div>
 
       <div className="hero__scroll">
-        <span className="mono">scroll</span>
-        <div className="hero__scroll-line" />
+        <span className="mono">scroll or use arrow keys</span>
+        <div className="hero__scroll-arrow">→</div>
       </div>
     </section>
   )
