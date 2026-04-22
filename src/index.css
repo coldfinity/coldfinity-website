@@ -82,27 +82,25 @@ button { cursor: none; font-family: inherit; background: none; border: none; pad
   flex-shrink: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Turtle walking legs */
-@keyframes turtleLegA {
+/* Floating infinity logo */
+.infinity-float {
+  position: fixed;
+  bottom: 1.5rem;
+  pointer-events: none;
+  user-select: none;
+  z-index: 50;
+  filter: drop-shadow(0 0 10px rgba(235, 111, 146, 0.55));
+  animation: infinityFloat 3s ease-in-out infinite;
+}
+
+@keyframes infinityFloat {
   0%, 100% { transform: translateY(0px);  }
-  50%       { transform: translateY(-7px); }
-}
-@keyframes turtleLegB {
-  0%, 100% { transform: translateY(-7px); }
-  50%       { transform: translateY(0px);  }
-}
-
-.turtle-leg-a {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: turtleLegA 0.55s ease-in-out infinite;
-}
-.turtle-leg-b {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: turtleLegB 0.55s ease-in-out infinite;
+  50%       { transform: translateY(-8px); }
 }
 
 /* Scrollbar */
@@ -231,8 +229,10 @@ button { cursor: none; font-family: inherit; background: none; border: none; pad
 
 /* Full-bleed section wrappers */
 .section-wrap {
-  border-left: 1px solid var(--border);
+  width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* ================================
@@ -303,6 +303,7 @@ button { cursor: none; font-family: inherit; background: none; border: none; pad
    ================================ */
 .hero {
   position: relative;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
