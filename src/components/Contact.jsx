@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import InfinityIcon from './InfinityIcon'
 
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/coldfinity'   },
@@ -38,6 +39,7 @@ export default function Contact() {
 
   return (
     <div className="section-wrap">
+      <InfinityIcon width={680} strokeWidth={1} className="infinity-bg-svg" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotate(5deg)' }} />
       <section id="contact" className="section">
         <div className="section__header reveal" ref={headerRef}>
           <span className="section__eyebrow mono">04. contact</span>

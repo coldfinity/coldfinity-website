@@ -1,59 +1,97 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import InfinityScene from './components/InfinityScene'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
-import HorizontalScroll from './components/HorizontalScroll'
-import Turtle from './components/Turtle'
 import './App.css'
 
-function CustomCursor() {
-  const dot  = useRef(null)
-  const ring = useRef(null)
+const TOTAL = 5
 
-  useEffect(() => {
-    const move = (e) => {
-      if (dot.current)  { dot.current.style.left  = e.clientX + 'px'; dot.current.style.top  = e.clientY + 'px' }
-      if (ring.current) { ring.current.style.left = e.clientX + 'px'; ring.current.style.top = e.clientY + 'px' }
-    }
-    const expand = () => ring.current?.classList.add('ring--hover')
-    const shrink = () => ring.current?.classList.remove('ring--hover')
+export default function App() {
+  const [section, setSection] = useState(0)
+  const sectionRef = useRef(0)
+  const cooldownRef = useRef(false)
+  const accRef = useRef(0)
 
-    window.addEventListener('mousemove', move)
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', expand)
-      el.addEventListener('mouseleave', shrink)
-    })
-    return () => window.removeEventListener('mousemove', move)
+  const goTo = useCallback((idx) => {
+    const clamped = Math.max(0, Math.min(TOTAL - 1, idx))
+    if (clamped === sectionRef.current || cooldownRef.current) return
+    sectionRef.current = clamped
+    setSection(clamped)
+    cooldownRef.current = true
+    setTimeout(() => { cooldownRef.current = false }, 1200)
   }, [])
 
-  return (
-    <>
-      <div className="cursor" ref={dot} />
-      <div className="cursor-ring" ref={ring} />
-    </>
-  )
-}
+  useEffect(() => {
+    const onWheel = (e) => {
+      e.preventDefault()
+      accRef.current += e.deltaY
+      if (Math.abs(accRef.current) > 60) {
+        goTo(sectionRef.current + (accRef.current > 0 ? 1 : -1))
+        accRef.current = 0
+      }
+    }
+    const onKey = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(sectionRef.current + 1)
+      if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goTo(sectionRef.current - 1)
+    }
+    let ty = 0
+    const onTouchStart = (e) => { ty = e.touches[0].clientY }
+    const onTouchEnd   = (e) => {
+      const dy = ty - e.changedTouches[0].clientY
+      if (Math.abs(dy) > 40) goTo(sectionRef.current + (dy > 0 ? 1 : -1))
+    }
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => {
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [goTo])
 
-// Section index map: Hero=0, About=1, Projects=2, Skills=3, Contact=4
-export default function App() {
-  const scrollRef = useRef(null)
-  const goTo = (i) => scrollRef.current?.goToSection(i)
+  const labels = ['Hero', 'About', 'Projects', 'Skills', 'Contact']
 
   return (
     <div className="app">
-      <CustomCursor />
+      <InfinityScene section={section} />
       <Navbar goTo={goTo} />
-      <HorizontalScroll ref={scrollRef}>
+
+      {/* Dot nav */}
+      <nav className="orbit-dots" aria-label="Section navigation">
+        {labels.map((label, i) => (
+          <button
+            key={i}
+            className={`orbit-dot${i === section ? ' orbit-dot--active' : ''}`}
+            onClick={() => goTo(i)}
+            aria-label={label}
+            title={label}
+          />
+        ))}
+      </nav>
+
+      {/* Section overlays — all stacked, only active is visible */}
+      <div className={`section-overlay section-overlay--hero${section === 0 ? ' section-overlay--active' : ''}`}>
         <Hero goTo={goTo} />
+      </div>
+      <div className={`section-overlay section-overlay--content${section === 1 ? ' section-overlay--active' : ''}`}>
         <About />
+      </div>
+      <div className={`section-overlay section-overlay--content${section === 2 ? ' section-overlay--active' : ''}`}>
         <Projects />
+      </div>
+      <div className={`section-overlay section-overlay--content${section === 3 ? ' section-overlay--active' : ''}`}>
         <Skills />
+      </div>
+      <div className={`section-overlay section-overlay--content${section === 4 ? ' section-overlay--active' : ''}`}>
         <Contact />
-      </HorizontalScroll>
-      <Turtle />
+      </div>
     </div>
   )
 }

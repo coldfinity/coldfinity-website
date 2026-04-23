@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react'
+import InfinityIcon from './InfinityIcon'
+
 
 const projects = [
   {
@@ -74,6 +76,7 @@ export default function Projects() {
 
   return (
     <div className="section-wrap">
+      <InfinityIcon width={700} strokeWidth={1} className="infinity-bg-svg" style={{ top: '50%', left: '55%', transform: 'translate(-50%, -50%) rotate(10deg)' }} />
       <section id="projects" className="section">
         <div className="section__header reveal" ref={headerRef}>
           <span className="section__eyebrow mono">02. projects</span>

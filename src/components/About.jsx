@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import InfinityIcon from './InfinityIcon'
 
 const stats = [
   { value: 'AI',  label: 'Focus Area'      },
@@ -26,6 +27,7 @@ export default function About() {
 
   return (
     <div className="section-wrap">
+      <InfinityIcon width={680} strokeWidth={1} className="infinity-bg-svg" style={{ top: '50%', left: '60%', transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
       <section id="about" className="section">
         <div className="section__header reveal" ref={ref}>
           <span className="section__eyebrow mono">01. about me</span>
