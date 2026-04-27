@@ -5,28 +5,28 @@ import InfinityIcon from './InfinityIcon'
 const projects = [
   {
     num: '01',
-    title: 'Project Alpha',
+    title: 'Transformer from Scratch',
     description:
-      'A full-stack web application that does something amazing. Replace this with your actual project description and what problem it solves.',
-    tech: ['React', 'Node.js', 'PostgreSQL'],
+      'Integrated/Replicated "Attention is all you need" by Google from sratch.',
+    tech: ['Python', 'Pytorch', 'Tokenizer'],
     live: '#',
-    repo: '#',
+    repo: 'https://github.com/coldfinity/transformer-from-scratch',
   },
   {
     num: '02',
-    title: 'Project Beta',
+    title: 'Neural Network from Scratch',
     description:
-      'An innovative tool built to solve a real problem. Describe what makes this project unique, who it helps, and what you learned.',
-    tech: ['Python', 'FastAPI', 'Redis'],
+      'Full MLP in C++ with no libtorch, eigen, ... . ',
+    tech: ['C++'],
     live: '#',
     repo: '#',
   },
   {
     num: '03',
-    title: 'Project Gamma',
+    title: 'ResNet from Scratch',
     description:
       'A creative experiment at the intersection of design and code. What did you explore? What surprised you while building it?',
-    tech: ['TypeScript', 'Three.js', 'WebGL'],
+    tech: ['Python', 'Pytorch'],
     live: '#',
     repo: '#',
   },

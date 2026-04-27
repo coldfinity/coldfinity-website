@@ -24,8 +24,8 @@
 
   --text:          #a0a0a0;
   --text-bright:   #f0f0f0;
-  --text-dim:      #505050;
-  --text-muted:    #2a2a2a;
+  --text-dim:      #888888;
+  --text-muted:    #606060;
 
   --border:        rgba(255, 255, 255, 0.06);
   --border-bright: rgba(255, 255, 255, 0.14);
